@@ -166,7 +166,9 @@
     var cubeNum = 5;
     var cubeList = [];
     for (var i = 1; i <= cubeNum; i++) {
-        cubeList.push(document.querySelector('.cube-'+i));
+        cube = document.querySelector('.cube-'+i);
+        cubeList.push(cube);
+        cube.classList.add('forceOpacity')
     };
 
     function visibilityCheck(event) {
@@ -180,7 +182,7 @@
     }
 
     function landscapeCheck(event) {
-        var el = event.target;
+        var el = event.detail.nextStep;
         var isFace = el.className.indexOf('face') > -1;
         for (var i = 0; i < cubeList.length; i++) {
             var cube = cubeList[i];
@@ -191,17 +193,14 @@
 
     root.addEventListener("impress:stepenter", function (event) {
       visibilityCheck(event);
-      landscapeCheck(event);
     }, false);
     
     root.addEventListener("impress:stepleave", function (event) {
         for (var i = 0; i < cubeList.length; i++) {
             cubeList[i].style.display = 'block';
-        };   
-        console.log(event);
+        };
+        landscapeCheck(event);
     }, false);
-
-    impress().triggerEvent(document.querySelector('#start'),'impress:stepenter');
 </script>
 
 </body>
