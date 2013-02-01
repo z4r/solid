@@ -515,7 +515,9 @@
             init: init,
             goto: goto,
             next: next,
-            prev: prev
+            prev: prev,
+            root: root,
+            triggerEvent: triggerEvent
         });
 
     };

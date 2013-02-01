@@ -100,8 +100,6 @@ body     { pointer-events: none; }
     -o-box-sizing:      border-box;
     box-sizing:         border-box;
 
-    font-family: 'Pontano Sans', helvetica, sans-serif;
-
     font-size: 50px;
     line-height: 1.5;
 }
@@ -115,8 +113,8 @@ body     { pointer-events: none; }
 }
 
 .step:not(.active) {
-    opacity: 0.9;
-} 
+    opacity: 0.2;
+}
 
 /* IMPRESS NOT SUPPORTED STYLES */
 
@@ -154,6 +152,10 @@ body     { pointer-events: none; }
     font-size: 75px;
     color: #DACDBA;
     text-shadow: 3px 3px #1E242B;
+    
+}
+.tpw {
+    opacity: 1 !important;
 }
 
 [class*="face"] {
@@ -176,6 +178,11 @@ body     { pointer-events: none; }
 }
 .cube-5 [class*="face"] {
     background: #FFFF00;
+}
+
+
+[class*="cube"].forceOpacity > .face-front{
+    opacity: 0.9 !important;
 }
 
 .face-front {

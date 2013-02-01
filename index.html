@@ -26,7 +26,7 @@
 
 <div id="impress">
 
-    <div class="step" data-y="350" data-scale="3.5">
+    <div id="start" class="step" data-y="700" data-scale="3.5">
     </div>
 <!--
     <div class="cube">
@@ -70,7 +70,7 @@
                 <h1>LEFT</h1>
         </div>
     </div>
-      <div class="step" data-y="350" data-scale="3.5">
+      <div class="step" data-y="700" data-scale="3.5">
     </div>
     <div class="cube-2">
         <div class="step face-front" data-x="-750" data-y="0" data-z="350" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0">
@@ -160,7 +160,49 @@
 </div>
 
 <script src="js/impress.js"></script>
-<script>impress().init();</script>
+<script>
+    impress().init();
+    var root = impress().root;
+    var cubeNum = 5;
+    var cubeList = [];
+    for (var i = 1; i <= cubeNum; i++) {
+        cubeList.push(document.querySelector('.cube-'+i));
+    };
+
+    function visibilityCheck(event) {
+        var el = event.target;
+        var hideCubes = el.className.indexOf('face-right') > -1 || el.className.indexOf('face-left') > -1;
+        for (var i = 0; i < cubeList.length; i++) {
+            var cube = cubeList[i];
+            if (hideCubes && cube != el.parentNode) cube.style.display = 'none';
+            else cube.style.display = 'block';
+        };           
+    }
+
+    function landscapeCheck(event) {
+        var el = event.target;
+        var isFace = el.className.indexOf('face') > -1;
+        for (var i = 0; i < cubeList.length; i++) {
+            var cube = cubeList[i];
+            if (!isFace) cube.classList.add('forceOpacity');
+            else cube.classList.remove('forceOpacity');
+        }
+    }
+
+    root.addEventListener("impress:stepenter", function (event) {
+      visibilityCheck(event);
+      landscapeCheck(event);
+    }, false);
+    
+    root.addEventListener("impress:stepleave", function (event) {
+        for (var i = 0; i < cubeList.length; i++) {
+            cubeList[i].style.display = 'block';
+        };   
+        console.log(event);
+    }, false);
+
+    impress().triggerEvent(document.querySelector('#start'),'impress:stepenter');
+</script>
 
 </body>
 </html>
