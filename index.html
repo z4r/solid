@@ -145,27 +145,24 @@
     for (var i = 1; i <= cubeNum; i++) {
         cube = document.querySelector('.cube-'+i);
         cubeList.push(cube);
-        cube.classList.add('landscape')
     };
-    var rx = new RegExp('\\bface');
+    var face = new RegExp('\\bface');
+
     function visibilityCheck(event) {
         var prev = event.detail.prevStep || event.target
         var next = event.detail.nextStep || event.target
-        for (var i = 0; i < cubeList.length; i++) {
-            var cube = cubeList[i];
-            if (rx.test(next.className)) cube.classList.remove('landscape');
-            else cube.classList.add('landscape');
-        }
-
         var prevIsLR = prev.classList.contains('face-right') || prev.classList.contains('face-left');
         var nextIsLR = next.classList.contains('face-right') || next.classList.contains('face-left');
 
         for (var i = 0; i < cubeList.length; i++) {
             var cube = cubeList[i];
+            if (face.test(next.className)) cube.classList.remove('landscape');
+            else cube.classList.add('landscape');
             if (nextIsLR && cube != next.parentNode) cube.classList.add('nopacity');
             if (prevIsLR && cube != prev.parentNode) cube.classList.remove('nopacity');
         }
     }
+
     root.addEventListener("impress:stepenter", function (event) {
         visibilityCheck(event);
     }, false);
