@@ -170,18 +170,7 @@
         cubeList.push(cube);
         cube.classList.add('landscape')
     };
-
     function visibilityCheck(event) {
-        var el = event.target;
-        var hideCubes = el.className.indexOf('face-right') > -1 || el.className.indexOf('face-left') > -1;
-        for (var i = 0; i < cubeList.length; i++) {
-            var cube = cubeList[i];
-            if (hideCubes && cube != el.parentNode) cube.style.display = 'none';
-            else cube.style.display = 'block';
-        };
-    }
-
-    function landscapeCheck(event) {
         for (var i = 0; i < cubeList.length; i++) {
             var cube = cubeList[i];
             if (event.detail.nextStep.className.indexOf('face') <= -1) cube.classList.add('landscape');
@@ -199,13 +188,8 @@
 
 
     }
-
-    root.addEventListener("impress:stepenter", function (event) {
-    }, false);
-    
     root.addEventListener("impress:stepleave", function (event) {
-
-        landscapeCheck(event);
+        visibilityCheck(event);
     }, false);
 </script>
 
