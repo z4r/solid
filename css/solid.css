@@ -187,7 +187,6 @@ body     { pointer-events: none; }
 [class*="cube"].nopacity > [class*="face"]{
     opacity: 0;
 }
-
-.step:not(.active) {
+[class*="face"]:not(.active) {
     opacity: 0.2;
 }
