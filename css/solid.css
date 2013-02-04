@@ -190,3 +190,6 @@ body     { pointer-events: none; }
 [class*="face"]:not(.active) {
     opacity: 0.2;
 }
+.impress-not-supported [class*="face"]:not(.active){
+    opacity: 1;
+}
