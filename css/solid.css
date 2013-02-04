@@ -112,10 +112,6 @@ body     { pointer-events: none; }
     transition:         opacity 1s;
 }
 
-.step:not(.active) {
-    opacity: 0.2;
-}
-
 /* IMPRESS NOT SUPPORTED STYLES */
 
 .fallback-message {
@@ -154,9 +150,6 @@ body     { pointer-events: none; }
     text-shadow: 3px 3px #1E242B;
     
 }
-.tpw {
-    opacity: 1 !important;
-}
 
 [class*="face"] {
     width: 700px;
@@ -180,16 +173,21 @@ body     { pointer-events: none; }
     background: #FFFF00;
 }
 
-
-[class*="cube"].forceOpacity > .face-front{
-    opacity: 0.9 !important;
-}
-
 .face-front {
     text-align: center;
 }
-
 .face-front h1 {
     font-family: 'Original Surfer';
     font-size: 400px;
+}
+
+[class*="cube"].landscape > .face-front{
+    opacity: 0.9;
+}
+[class*="cube"].nopacity > [class*="face"]{
+    opacity: 0;
+}
+
+.step:not(.active) {
+    opacity: 0.2;
 }

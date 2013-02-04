@@ -168,7 +168,7 @@
     for (var i = 1; i <= cubeNum; i++) {
         cube = document.querySelector('.cube-'+i);
         cubeList.push(cube);
-        cube.classList.add('forceOpacity')
+        cube.classList.add('landscape')
     };
 
     function visibilityCheck(event) {
@@ -178,27 +178,33 @@
             var cube = cubeList[i];
             if (hideCubes && cube != el.parentNode) cube.style.display = 'none';
             else cube.style.display = 'block';
-        };           
+        };
     }
 
     function landscapeCheck(event) {
-        var el = event.detail.nextStep;
-        var isFace = el.className.indexOf('face') > -1;
         for (var i = 0; i < cubeList.length; i++) {
             var cube = cubeList[i];
-            if (!isFace) cube.classList.add('forceOpacity');
-            else cube.classList.remove('forceOpacity');
+            if (event.detail.nextStep.className.indexOf('face') <= -1) cube.classList.add('landscape');
+            else cube.classList.remove('landscape');
         }
+
+        var prevIsLR = event.target.className.indexOf('face-right') > -1 || event.target.className.indexOf('face-left') > -1;
+        var nextIsLR = event.detail.nextStep.className.indexOf('face-right') > -1 || event.detail.nextStep.className.indexOf('face-left') > -1;
+
+        for (var i = 0; i < cubeList.length; i++) {
+            var cube = cubeList[i];
+            if (nextIsLR && cube != event.detail.nextStep.parentNode) cube.classList.add('nopacity');
+            if (prevIsLR && cube != event.target.parentNode) cube.classList.remove('nopacity');
+        }
+
+
     }
 
     root.addEventListener("impress:stepenter", function (event) {
-      visibilityCheck(event);
     }, false);
     
     root.addEventListener("impress:stepleave", function (event) {
-        for (var i = 0; i < cubeList.length; i++) {
-            cubeList[i].style.display = 'block';
-        };
+
         landscapeCheck(event);
     }, false);
 </script>
