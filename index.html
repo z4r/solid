@@ -11,6 +11,8 @@
 
     <link href='http://fonts.googleapis.com/css?family=Original+Surfer' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
+
     <link href="css/solid.css" rel="stylesheet" />
     
     <link rel="shortcut icon" href="favicon.png" />
@@ -26,15 +28,17 @@
 
 <div id="impress">
     <div id="start" class="step" data-y="700" data-scale="3.5"></div>
+    <div id="title" class="step" data-rotate-x="90" data-scale="3.5"></div>
     <div class="cube-1">
         <div class="step face-front" data-x="-1500" data-y="0" data-z="350" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0">
                 <h1>S</h1>
         </div>
         <div class="step face-top" data-x="-1500" data-y="-350" data-z="0" data-rotate-x="90" data-rotate-y="0" data-rotate-z="0">
-                <h1>TOP</h1>
+                <h1 id="single-responsability-title">Single Responsability</h1>
+                <img src="img/1.png"/>
         </div>
         <div class="step face-right" data-x="-1150" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-                <h1>RIGHT</h1>
+                <blockquote>&ldquo;Every class should have a single responsibility; that responsibility should be entirely encapsulated by the class.&rdquo;</blockquote>
         </div>
         <div class="step face-bottom" data-x="-1500" data-y="350" data-z="0" data-rotate-x="90" data-rotate-y="180" data-rotate-z="0">
                 <h1>BOTTOM</h1>
@@ -52,10 +56,11 @@
                 <h1>O</h1>
         </div>
         <div class="step face-top" data-x="-750" data-y="-350" data-z="0" data-rotate-x="90" data-rotate-y="0" data-rotate-z="0">
-                <h1>TOP</h1>
+                <h1 id="open-closed-title">Open/Closed</h1>
+                <img src="img/2.png"/>
         </div>
         <div class="step face-right" data-x="-400" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-                <h1>RIGHT</h1>
+                <blockquote>&ldquo;Software entities should be open for extension, but closed for modification.&rdquo;</blockquote>
         </div>
         <div class="step face-bottom" data-x="-750" data-y="350" data-z="0" data-rotate-x="90" data-rotate-y="180" data-rotate-z="0">
                 <h1>BOTTOM</h1>
@@ -73,10 +78,11 @@
                 <h1>L</h1>
         </div>
         <div class="step face-top" data-x="0" data-y="-350" data-z="0" data-rotate-x="90" data-rotate-y="0" data-rotate-z="0">
-                <h1>TOP</h1>
+                <h1 id="liskov-substitution-title">Liskov Substitution</h1>
+                <img src="img/3.png"/>
         </div>
         <div class="step face-right" data-x="350" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-                <h1>RIGHT</h1>
+                <blockquote>&ldquo;if S is a subtype of T, then objects of type T may be replaced with objects of type S without altering any of the desirable properties of that program.&rdquo;</blockquote>
         </div>
         <div class="step face-bottom" data-x="0" data-y="350" data-z="0" data-rotate-x="90" data-rotate-y="180" data-rotate-z="0">
                 <h1>BOTTOM</h1>
@@ -94,10 +100,11 @@
                 <h1>I</h1>
         </div>
         <div class="step face-top" data-x="750" data-y="-350" data-z="0" data-rotate-x="90" data-rotate-y="0" data-rotate-z="0">
-                <h1>TOP</h1>
+                <h1 id"interface-segregation-title">Interface Segregation</h1>
+                <img src="img/4.png"/>
         </div>
         <div class="step face-right" data-x="1100" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-                <h1>RIGHT</h1>
+                <blockquote>&ldquo;No client should be forced to depend on methods it does not use.&rdquo;</blockquote>
         </div>
         <div class="step face-bottom" data-x="750" data-y="350" data-z="0" data-rotate-x="90" data-rotate-y="180" data-rotate-z="0">
                 <h1>BOTTOM</h1>
@@ -115,10 +122,11 @@
                 <h1>D</h1>
         </div>
         <div class="step face-top" data-x="1500" data-y="-350" data-z="0" data-rotate-x="90" data-rotate-y="0" data-rotate-z="0">
-                <h1>TOP</h1>
+                <h1 id="dependency-inversion-title" >Dependency Inversion</h1>
+                <img src="img/5.png"/>
         </div>
         <div class="step face-right" data-x="1850" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-                <h1>RIGHT</h1>
+                <blockquote>&ldquo;High-level modules should not depend on low-level modules. Both should depend on abstractions.&rdquo;</blockquote>
         </div>
         <div class="step face-bottom" data-x="1500" data-y="350" data-z="0" data-rotate-x="90" data-rotate-y="180" data-rotate-z="0">
                 <h1>BOTTOM</h1>
@@ -156,8 +164,18 @@
 
         for (var i = 0; i < cubeList.length; i++) {
             var cube = cubeList[i];
-            if (face.test(next.className)) cube.classList.remove('landscape');
-            else cube.classList.add('landscape');
+            if (face.test(next.className)) {
+                cube.classList.remove('landscape-front');
+                cube.classList.remove('landscape-top');
+            }
+            else if (next.id == 'title') {
+                cube.classList.remove('landscape-front');
+                cube.classList.add('landscape-top');
+            }
+            else {
+                cube.classList.add('landscape-front');
+                cube.classList.remove('landscape-top');
+            }
             if (nextIsLR && cube != next.parentNode) cube.classList.add('nopacity');
             if (prevIsLR && cube != prev.parentNode) cube.classList.remove('nopacity');
         }
