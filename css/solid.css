@@ -143,12 +143,6 @@ body     { pointer-events: none; }
     display: block;
 }
 
-blockquote {
-    font-family: 'Merienda One';
-    font-style: italic;
-    line-height: 1.4;
-}
-
 .tpw h1 {
     font-family: 'Merienda One';
     font-size: 75px;
@@ -187,20 +181,66 @@ blockquote {
     font-size: 400px;
 }
 
+
 .face-top{
     text-align: center;
+}
+.face-top h1 {
+    font-family: 'Days One';
+    text-transform: uppercase;
+    font-size: 38px;
+    margin-top: -25px;
+}
+.face-top blockquote {
+    font-family: 'Merienda One';
+    font-style: italic;
+    line-height: 1;
+    font-size: 20px;
 }
 .face-top img {
     height: 600px;
     width: 600px;
 }
 
-
-.face-top h1 {
+.face-right h1 {
     font-family: 'Days One';
     text-transform: uppercase;
     font-size: 38px;
-    margin-top: -12px;
+    margin-top: -25px;
+}
+.face-right p {
+    font-family: 'Days One';
+    font-size: 30px;
+}
+
+.face-bottom h1 {
+    text-align: center;
+    font-family: 'Merienda One';
+    font-size: 50px;
+}
+
+.face-rear h1 {
+    font-family: 'Days One';
+    text-transform: uppercase;
+    font-size: 38px;
+    margin-top: -25px;
+}
+.face-rear ul li {
+    list-style: disc inside;
+    font-family: 'Days One';
+    font-size: 34px;
+}
+
+.face-left h1 {
+    font-family: 'Days One';
+    text-transform: uppercase;
+    font-size: 38px;
+    margin-top: -25px;
+}
+.face-left ul li {
+    list-style: disc inside;
+    font-family: 'Days One';
+    font-size: 34px;
 }
 
 [class*="cube"].landscape-front > .face-front{
@@ -218,3 +258,90 @@ blockquote {
 .impress-not-supported [class*="face"]:not(.active){
     opacity: 1;
 }
+
+@font-face
+{ font-family:"Source Code Pro";
+  src:url('fonts/SourceCodePro-Regular-webfont.ttf') format('truetype'); }
+
+.pln
+{ color:#bd3613; }
+
+.str
+{ color:#269186; }
+
+.kwd
+{ color:#859900; }
+
+.com
+{ color:#586175;
+  font-style:italic; }
+
+.typ
+{ color:#b58900; }
+
+.lit
+{ color:#2aa198; }
+
+.pun
+{ color:#839496; }
+
+.opn
+{ color:#839496; }
+
+.clo
+{ color:#839496; }
+
+.tag
+{ color:#268bd2; }
+
+.atn
+{ color:#586175; }
+
+.atv
+{ color:#2aa198; }
+
+.dec
+{ color:#268bd2; }
+
+.var
+{ color:#268bd2; }
+
+.fun
+{ color:#F00; }
+
+pre.prettyprint
+{ background-color:#eee;
+  padding:10px;
+  border:1px solid #333;
+  text-align: left;
+  margin: 0; }
+
+pre.small {
+    font-size: 18px;
+}
+
+
+ol.linenums
+{ color:#4c666c; }
+
+ol.linenums li
+{ line-height:18px;
+  padding-left:12px;
+  list-style-type:decimal-leading-zero;
+  color:#cecece; }
+
+ol.linenums li code
+{ padding-left:1em; }
+
+pre
+{ font:0.6em "Source Code Pro"; }
+
+pre code
+{ text-shadow:none; }
+
+pre ol.linenums li
+{ margin-left:0;
+  padding-left:0;
+  font-size:1em;
+  line-height:1.35em;
+  list-style-position:inside; }
