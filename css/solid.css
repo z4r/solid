@@ -224,6 +224,11 @@ body     { pointer-events: none; }
     font-family: 'Merienda One';
     font-size: 30px;
 }
+.face-bottom h3 {
+    text-align: center;
+    font-family: 'Merienda One';
+    font-size: 20px;
+}
 
 .face-rear h1 {
     text-align: center;
