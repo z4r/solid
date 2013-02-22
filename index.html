@@ -39,7 +39,7 @@
             <img src="img/1.png"/>
         </div>
         <div class="step face-right" data-x="-1150" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-            <h1>Rationale:</h1>
+            <h1>Rationale</h1>
             <p>This principle aims to reduce the costs of existing requirements modifications.</p>
             <p>The goal should be to identify and modify the source code in one isolated place.</p>
             <p>Every requirement should not cause any unwanted side-effects on others.</p>
@@ -62,7 +62,7 @@ class Formatter(object):
         ...</pre>
         </div>
         <div class="step face-rear" data-x="-1500" data-y="0" data-z="-350" data-rotate-x="0" data-rotate-y="180" data-rotate-z="0">
-            <h1>Cohesion:</h1>
+            <h1>Cohesion</h1>
             <ul>
                 <li>Coincidental (Utility)</li>
                 <li>Logical (Keyboard input handlers)</li>
@@ -93,7 +93,7 @@ class Formatter(object):
             <img src="img/2.png"/>
         </div>
         <div class="step face-right" data-x="-400" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-            <h1>Rationale:</h1>
+            <h1>Rationale</h1>
             <p>This principle aims to reduce the costs of new requirements additions.</p>
             <p>The running code should not be changed on a new requirement (by design and not by fear).</p>
             <p>Openess for changes is often reached by the inversion of dependecies. It's a balanced design decision which part of a system is open or closed, because it's not possible to design a system open for all kinds of new requirements.</p>
@@ -129,7 +129,8 @@ an Abstract Syntax Tree.</pre>
                 <li>avoid unwanted side-effects adding new requirements</li>
                 <li>minimize the number of source code touched for an addition</li>
                 <li>increase code modularity, evolvability and testability</li>
-            </ul>        </div>
+            </ul>
+        </div>
     </div>
     <div class="step" data-y="700" data-scale="3.5"></div>
     <div class="cube-3">
@@ -142,16 +143,37 @@ an Abstract Syntax Tree.</pre>
                 <img src="img/3.png"/>
         </div>
         <div class="step face-right" data-x="350" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-                
+            <h1>Rationale</h1>
+            <p>This principle would ensure that type hierarchies are well-formed.</p>
+            <p>With LSP in mind inheritance is a <em>behaves-like-a</em> relationship and not a <em>is-a</em> one.
+            <p>When this principle is violated, the OCP is violeted too as a collateral damage.</p>
         </div>
         <div class="step face-bottom" data-x="0" data-y="350" data-z="0" data-rotate-x="90" data-rotate-y="180" data-rotate-z="0">
-                <h1>BOTTOM</h1>
+            <h1>Duck Typing</h1>
+            <h2>LSP speaks first of all about contract with clients. It's true that: &ldquo;if it swims like a duck, quacks like a duck, but needs batteries, you probably have the wrong abstraction&rdquo;. But what's up if clients don't need battery? &ldquo;If it swims like a duck and quacks like a duck, then it’s a duck&rdquo;.</h2>
         </div>
         <div class="step face-rear" data-x="0" data-y="0" data-z="-350" data-rotate-x="0" data-rotate-y="180" data-rotate-z="0">
-                <h1>REAR</h1>
+            <h1>A typical violation</h1>
+            <pre class="prettyprint lang-python">class Rectangle(object):
+    def __init__(self, width, height):
+        self.width, self.height = width, height
+
+    @property
+    def area(self):
+        return self.width * self.height
+
+rect = Rectagle(6, 6)
+area = rect.area
+rect.width /= 2
+assert area == rect.area * 2</pre>
+            <h2>Would Square inherit from Rectangle?</h2>
         </div>
         <div class="step face-left" data-x="-350" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="270" data-rotate-z="0">
-                <h1>LEFT</h1>
+            <h1>Benefits</h1>
+            <ul>
+                <li>avoid unwanted side-effects adding new requirements</li>
+                <li>explicit declare of the contracts</li>
+            </ul>
         </div>
     </div>
     <div class="step" data-y="700" data-scale="3.5"></div>
