@@ -147,8 +147,17 @@ body     { pointer-events: none; }
     font-family: 'Merienda One';
     font-size: 75px;
     color: #DACDBA;
-    text-shadow: 3px 3px #1E242B;
-    
+    text-shadow: 3px 3px #1E242B;  
+}
+.tpw p {
+    font-family: 'Merienda One';
+    font-size: 33px;
+    color: #DACDBA;
+    text-shadow: 3px 3px #1E242B;  
+}
+.tpw a {
+    color: #FF8000;
+    text-decoration: none;
 }
 
 [class*="face"] {
@@ -246,6 +255,10 @@ body     { pointer-events: none; }
     font-family: 'Merienda One';
     font-size: 40px;
 }
+.face-rear p {
+    font-family: 'Days One';
+    font-size: 30px;
+}
 
 .face-left h1 {
     font-family: 'Days One';
@@ -271,13 +284,12 @@ body     { pointer-events: none; }
 [class*="face"]:not(.active) {
     opacity: 0.2;
 }
+.credits.nopacity {
+    opacity: 0;
+}
 .impress-not-supported [class*="face"]:not(.active){
     opacity: 1;
 }
-
-@font-face
-{ font-family:"Source Code Pro";
-  src:url('fonts/SourceCodePro-Regular-webfont.ttf') format('truetype'); }
 
 .pln
 { color:#bd3613; }
@@ -336,7 +348,6 @@ pre.small {
     font-size: 18px;
 }
 
-
 ol.linenums
 { color:#4c666c; }
 
@@ -350,7 +361,7 @@ ol.linenums li code
 { padding-left:1em; }
 
 pre
-{ font:0.6em "Source Code Pro"; }
+{ font:0.4em "Source Code Pro"; }
 
 pre code
 { text-shadow:none; }

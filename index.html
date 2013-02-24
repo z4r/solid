@@ -12,6 +12,7 @@
     <link href='http://fonts.googleapis.com/css?family=Original+Surfer' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
 
     <link href="css/solid.css" rel="stylesheet" />
     
@@ -78,7 +79,10 @@ class Formatter(object):
             <ul>
                 <li>avoid unwanted side-effects modifing existing requirements</li>
                 <li>minimize the number of source code touched for a modification</li>
-                <li>increase code reusability, maintainability and testability</li>
+                <li>classes in understandable units</li>
+                <li>reusability</li>
+                <li>maintainability</li>
+                <li>testability</li>
             </ul>
         </div>
     </div>
@@ -128,7 +132,11 @@ an Abstract Syntax Tree.</pre>
             <ul>
                 <li>avoid unwanted side-effects adding new requirements</li>
                 <li>minimize the number of source code touched for an addition</li>
-                <li>increase code modularity, evolvability and testability</li>
+                <li>flexibility</li>
+                <li>guidance</li>
+                <li>modularity</li>
+                <li>evolvability</li>
+                <li>testability</li>
             </ul>
         </div>
     </div>
@@ -173,6 +181,7 @@ assert area == rect.area * 2</pre>
             <ul>
                 <li>avoid unwanted side-effects adding new requirements</li>
                 <li>explicit declare of the contracts</li>
+                <li>avoid specific knowledge</li>
             </ul>
         </div>
     </div>
@@ -210,9 +219,22 @@ public interface Barkable {
         </div>
         <div class="step face-rear" data-x="750" data-y="0" data-z="-350" data-rotate-x="0" data-rotate-y="180" data-rotate-z="0">
                 <h1>Still Duck Typing</h1>
+                <p>In dynamic languages (like python, perl, ruby) interfaces should not be declared as everything is an interface.</p>
+                <p>But the explicit interfaces bring benefits in teamwork.</p>
+                <pre class="prettyprint lang-python">class EmptyClass(object):
+    def method1(self):
+        raise NotImplementedError
+
+    def method2(self):
+        raise NotImplementedError</pre>
         </div>
         <div class="step face-left" data-x="400" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="270" data-rotate-z="0">
-                <h1>LEFT</h1>
+            <h1>Benefits</h1>
+            <ul>
+                <li>interfaces in understandable units</li>
+                <li>explicit declare of implementation</li>
+                <li>avoid specific unused knowledge</li>
+            </ul>
         </div>
     </div>
     <div class="step" data-y="700" data-scale="3.5"></div>
@@ -226,22 +248,71 @@ public interface Barkable {
                 <img src="img/5.png"/>
         </div>
         <div class="step face-right" data-x="1850" data-y="0" data-z="0" data-rotate-x="90" data-rotate-y="90" data-rotate-z="0">
-                
+            <h1>Rationale</h1>
+            <p>This principle refers to the purpose of rendering high-level modules independent of the low-level module implementation details.</p>
+            <p>High-level modules should not depend on low-level modules.</p>
+            <p>The goal of this principle is to decouple high-level components from low-level components such that reuse with different low-level component implementations becomes possible.</p>
         </div>
         <div class="step face-bottom" data-x="1500" data-y="350" data-z="0" data-rotate-x="90" data-rotate-y="180" data-rotate-z="0">
-                <h1>BOTTOM</h1>
+            <h1>Dependency Injection</h1>
+            <pre class="prettyprint lang-python">from datetime import datetime
+def clock():
+    return "Hi, it's {0}".format(datetime.now())</pre>
+            <h2>How can we test it?</h2>
+            <h2>How can we integrate it?</h2>
+            <pre class="prettyprint lang-python">from datetime import datetime
+def clock(now_callable=datetime.now):
+    return "Hi, it's {0}".format(now_callable())
+
+expected = "Hi, it's 2013-02-24 00:00:00"
+fakenow = lambda: datetime(2013, 2, 24)
+assert expected == clock(now_callable=fakenow)</pre>
         </div>
         <div class="step face-rear" data-x="1500" data-y="0" data-z="-350" data-rotate-x="0" data-rotate-y="180" data-rotate-z="0">
-                <h1>REAR</h1>
+            <h2>Monkey Patch</h2>
+<pre class="prettyprint lang-python">import socket
+socket._socketobject = Mocket
+socket.gethostname = Mocket.gethostname
+socket.gethostbyname = Mocket.gethostbyname
+socket.getaddrinfo = Mocket.getaddrinfo
+socket.inet_aton = Mocket.gethostbyname</pre>
+            <h2>Runtime Import</h2>
+            <pre class="prettyprint lang-python">client_class_str = 'prj.clients.AClient'
+client_path = client_class_str.split('.')
+client_class = getattr(
+    __import__(
+        '.'.join(client_path[:-1]),
+        {},
+        {},
+        client_path[-1]
+    ),
+    client_path[-1],
+)</pre>
         </div>
         <div class="step face-left" data-x="1150" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="270" data-rotate-z="0">
-                <h1>LEFT</h1>
+            <h1>Benefits</h1>
+            <ul>
+                <li>flexibility</li>
+                <li>modularity</li>
+                <li>evolvability</li>
+                <li>testability</li>
+                <li>testability</li>
+                <li>testability</li>
+            </ul>
         </div>
     </div>
     <div class="step tpw" data-y="700" data-scale="3.5">
        <h1>the professional way</h1>
     </div>
-
+    <div id="credits" class="step tpw credits" data-x="3400" data-y="2800" data-rotate-y="-15" data-scale="10">
+        <p>an <a href="http://bartaz.github.com/impress.js/">impress.js</a> presentation by <a href="https://github.com/z4r">Andrea de Marco</a></p>
+        <h1>References</h1>
+        <p><a href="http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod">PrinciplesOfOod</a> by <a href="http://butunclebob.com/">Robert C. Martin</a></p>
+        <p><a href="http://cs.txstate.edu/~rp31/papersSP/TDMSpringer2002.pdf">Structured Analysis</a> by <a href="http://en.wikipedia.org/wiki/Tom_DeMarco">Tom DeMarco</a></p>
+        <p><a href="http://stefanroock.files.wordpress.com/2011/09/solidforyourlanguage.pdf">SOLID for your language</a> by @StefanRoock</a></p>
+        <p><a href="http://lostechies.com/chadmyers/2008/03/08/pablo-s-topic-of-the-month-march-solid-principles/">SOLID Principles</a> by <a href="http://lostechies.com/">Los Techies</a></p>
+        <p><a href="http://www.aleax.it/yt_pydi.pdf">Python Dependency Injection</a> by <a href="http://www.aleax.it/">Alex Martelli</a></p>
+    </div>
 </div>
 
 <script src="js/impress.js"></script>
@@ -279,6 +350,11 @@ public interface Barkable {
             }
             if (nextIsLR && cube != next.parentNode) cube.classList.add('nopacity');
             if (prevIsLR && cube != prev.parentNode) cube.classList.remove('nopacity');
+        }
+        if (next.id == 'credits') {
+            document.getElementById('credits').classList.remove('nopacity');
+        } else {
+            document.getElementById('credits').classList.add('nopacity');
         }
     }
 
